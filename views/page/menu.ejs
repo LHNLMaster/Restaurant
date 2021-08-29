@@ -18,7 +18,7 @@
             }
             $.get(url + "add-cart/" + id, function (data) {
                 $('#lblCartCount').text(data)   
-                $("body").append(`<div id="snackbar">Thêm Giỏ Hàng Thành Công</div>`)
+                $("body").append(`<div id="snackbar">Add to Cart Successfully</div>`)
                 myFunction()
             });
         })
