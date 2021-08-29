@@ -40,9 +40,9 @@ module.exports = {
         var checkuser = await User.findOne({email: userReq.email});
         if (checkuser == null) {
 			await new User(userReq).save()
-            req.session.status = "Thêm Thành Công"
+            req.session.status = "More success"
 		} else {
-            req.session.status = "Thêm Thất Bại. Email tồn tại"
+            req.session.status = "Add Failure. Email exists"
 		}
 
         res.redirect("/admin/users");
@@ -61,12 +61,12 @@ module.exports = {
         if (checkuser == null) {
             let doc = await User.updateOne(filter, update);
             if (doc.ok == 1) {
-                req.session.status = "Sửa Thành Công"
+                req.session.status = "Successfully Repaired"
             } else {
-                req.session.status = "Sửa Thất Bại."
+                req.session.status = "Fix Failure."
             }
 		} else {
-            req.session.status = "Thêm Thất Bại. Email tồn tại"
+            req.session.status = "Add Failure. Email exists"
 		}
 
         res.redirect("/admin/users");
@@ -109,7 +109,7 @@ module.exports = {
             }
 
             await new Food(food).save()
-            req.session.status = "Thêm Thành Công"
+            req.session.status = "More success"
             res.redirect("/admin/foods")
         })
     },
@@ -133,9 +133,9 @@ module.exports = {
 
         let doc = await Food.updateOne(filter, update);
         if (doc.ok == 1) {
-            req.session.status = "Sửa Thành Công"
+            req.session.status = "Successfully Repaired"
         } else {
-            req.session.status = "Sửa Thất Bại."
+            req.session.status = "Fix Failure."
         }
         res.redirect("/admin/foods")
     },
