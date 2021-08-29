@@ -25,7 +25,7 @@ module.exports = {
     loginPost: async (req, res) => {
         var userReq = req.body;
         if (userReq.email == 'admin@gmail.com' && userReq.password == '123') {
-            req.session.status = "Đăng Nhập Thành Công"
+            req.session.status = "Logged in successfully"
             res.cookie('user_id', userReq.email, {
                 signed: true
             });
@@ -34,13 +34,13 @@ module.exports = {
             var user = await User.findOne(userReq);
 
             if (user) {
-                req.session.status = "Đăng Nhập Thành Công"
+                req.session.status = "Logged in successfully"
                 res.cookie('user_id', user.fullname, {
                     signed: true
                 });
                 res.redirect("/");
             } else {
-                req.session.status = "Đăng Nhập Thất Bại"
+                req.session.status = "Login failed"
                 res.redirect("/login");
             }
         }
@@ -51,7 +51,7 @@ module.exports = {
     registerPost: async (req, res) => {
         var user = req.body;
         if (user.email == 'admin@gmail.com' || user.email == 'admin@gmail.com' && user.password == '123') {
-            req.session.status = "Đăng Ký Thất Bại"
+            req.session.status = "Registration failed"
             res.redirect("/login/register");
         } else {
             if (/@gmail\.com$/.test(user.email)) {
@@ -59,14 +59,14 @@ module.exports = {
                 var checkuser = await User.findOne({email: user.email});
                 if (checkuser == null) {
                     await new User(user).save()
-                    req.session.status = "Đăng Ký Thành Công"
+                    req.session.status = "Sign Up Success"
                     res.redirect("/login");
                 } else {
-                    req.session.status = "Đăng Ký Thất Bại"
+                    req.session.status = "Registration failed"
                     res.redirect("/login/register");
                 }
             } else {
-                req.session.status = "Đăng Ký Thất Bại"
+                req.session.status = "Registration failed"
                 res.redirect("/login/register");
             }
         }
