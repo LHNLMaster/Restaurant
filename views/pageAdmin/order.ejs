@@ -19,9 +19,9 @@
                     $("#myTable #" + id).fadeTo(500, 0, function () {
                         $(this).remove();
                     });
-                    $("body").append(`<div id="snackbar">Xóa Thành Công</div>`)
+                    $("body").append(`<div id="snackbar">Delete Successfully</div>`)
                 } else {
-                    $("body").append(`<div id="snackbar">Xóa Thất Bại</div>`)
+                    $("body").append(`<div id="snackbar">Delete Failure</div>`)
                 }
                 myFunction()
             });
