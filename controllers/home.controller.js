@@ -144,15 +144,15 @@ module.exports = {
                         carts: carts,
                     })
                 } else {
-                    req.session.status = "Giỏ Hàng Trống. Vui Lòng Thêm Vào Giỏ Hàng."
+                    req.session.status = "Shopping Cart Empty. Please Add To Cart."
                     res.redirect("/")
                 }
             } else {
-                req.session.status = "Giỏ Hàng Trống. Vui Lòng Thêm Vào Giỏ Hàng."
+                req.session.status = "Shopping Cart Empty. Please Add To Cart."
                 res.redirect("/")
             }
         } else {
-            req.session.status = "Vui Lòng Đăng Nhập Trước Khi Order"
+            req.session.status = "Please Login Before Ordering."
             res.redirect("/login")
         }
     },
@@ -163,7 +163,7 @@ module.exports = {
         order.details = req.session.cart
         await new Order(order).save()
         req.session.cart = []
-        req.session.status = "Order Thành Công"
+        req.session.status = "Order Success"
         res.redirect("/")
     }
 }
