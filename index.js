@@ -46,7 +46,7 @@ app.use(
 
 const checkAdmin = (req, res, next) => {
     if (req.signedCookies.user_id != 'admin@gmail.com') {
-        req.session.status = "Vui Lòng Đăng Nhập Với Tài Khoản Admin"
+        req.session.status = "Please Login With Admin Account"
         res.redirect("/login")
     }
     next()
